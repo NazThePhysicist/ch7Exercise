@@ -1,0 +1,37 @@
+Use the /states.rds/ data set. Fit a model predicting energy consumed
+##   per capita (energy) from the percentage of residents living in
+##   metropolitan areas (metro). Be sure to
+##   1. Examine/plot the data before fitting the model
+##   2. Print and interpret the model `summary'
+##   3. `plot' the model to look for deviations from modeling assumptions
+
+##   Select one or more additional predictors to add to your model and
+##   repeat steps 1-3. Is this model significantly better than the model
+##   with /metro/ as the only predictor?
+ 
+> exe0 <-readRDS("dataSets/states.rds")
+> exe0subset <- subset(exe0, select =  c("metro", "energy"))
+> summary(exe0subset)
+> plot(exe0subset)
+> cor(exe0subset, use = "pairwise")
+
+>  mod.exe0 <- lm(energy ~ metro , data = exe0)
+> summary(mod.exe0)
+
+> plot(mod.exe0)
+
+
+
+
+> Newexe0subset <- subset(exe0, select = c("metro", "pop", "waste", "energy"))
+
+> summary(Newexe0subset)
+> plot(Newexe0subset)
+
+> plot(Newexe0subset)
+> cor(Newexe0subset, use = "pairwise")
+> mod.Newexe0 <- lm(energy ~ metro + pop + waste  , data = exe0)
+> summary(mod.Newexe0)
+> plot(mod.Newexe0)
+> anova(mod.exe0, mod.Newexe0)
+
